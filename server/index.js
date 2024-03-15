@@ -8,7 +8,8 @@ const client = new MongoClient('mongodb+srv://satvik1608:sidharthsatvik@cluster0
 app.use(cors(
   {
     origin:["https://mentor-dashboard-app.vercel.app"],
-    methods:["POST","GET"]
+    methods:["POST","GET"],
+    credentials:true
   }
 ));
 app.use(express.json());
