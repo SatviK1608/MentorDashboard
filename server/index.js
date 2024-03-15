@@ -4,8 +4,7 @@ const cors = require('cors');
 const { MongoClient } = require('mongodb');
 require('dotenv').config()
 const url = process.env.MONGO_URL
-const client = new MongoClient("MONGO_URL='mongodb+srv://satvik1608:sidharthsatvik@cluster0.9kagwo0.mongodb.net/?retryWrites=true&w=majority'
-);
+const client = new MongoClient('mongodb+srv://satvik1608:sidharthsatvik@cluster0.9kagwo0.mongodb.net/?retryWrites=true&w=majority');
 app.use(cors(
   {
     origin:["https://mentor-dashboard-app.vercel.app"],
