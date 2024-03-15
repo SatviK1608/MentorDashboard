@@ -12,18 +12,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('https://mentor-dashboard-api.vercel.app/', { email, password });
-      // console.log(response.data.message)
-      // if (response.data.message !== 'Invalid email or password') {
-      //   localStorage.setItem('mid', response.data.message);
-      //   toast.success("Login successful")
-      //   navigate('/dashboard');
-      // } else {
-      //   // alert('Invalid email or password');
-      //   toast.error("Invalid email or password")
-      // }
-      const response = await axios.get('https://mentor-dashboard-api.vercel.app/');
-      toast.success(response.data);
+      const response = await axios.post('https://mentor-dashboard-api.vercel.app/', { email, password });
+      console.log(response.data.message)
+      if (response.data.message !== 'Invalid email or password') {
+        localStorage.setItem('mid', response.data.message);
+        toast.success("Login successful")
+        navigate('/dashboard');
+      } else {
+        // alert('Invalid email or password');
+        toast.error("Invalid email or password")
+      }
+      
     } catch (error) {
       console.error(error);
       toast.error('An error occurred while logging in');
