@@ -11,7 +11,7 @@ const Mentees = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/mentees', {
+        const response = await axios.post("https://mentor-dashboard-api.vercel.app/mentees", {
           mid
         });
         setMentees(response.data.mentees);
@@ -28,7 +28,7 @@ const Mentees = () => {
 
   const deleteMentee = async (studentid) => {
     try {
-      const response = await axios.post("http://localhost:5000/delete", { studentid, mid });
+      const response = await axios.post("https://mentor-dashboard-api.vercel.app/delete", { studentid, mid });
       if (response.data.message === "Deleted Successfully") {
         toast.success("Mentee deleted successfully");
         var m = mentees.filter((item) => {
@@ -48,7 +48,7 @@ const Mentees = () => {
   const confirmResult = async (studentid) => {
     try {
       // eslint-disable-next-line
-      const response = await axios.post("http://localhost:5000/confirm", { studentid });
+      const response = await axios.post("https://mentor-dashboard-api.vercel.app/confirm", { studentid });
       toast.success("Marks have been locked");
     } catch (err) {
       console.log("error")
