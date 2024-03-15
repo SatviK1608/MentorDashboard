@@ -10,7 +10,7 @@ const Edit = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.post('https://mentor-dashboard-api.vercel.app/editMarks', { sid });
+        const response = await axios.post('https://mentor-dashboard-api-three.vercel.app/editMarks', { sid });
         setStudent(response.data);
       } catch (error) {
         console.error(error);
@@ -28,7 +28,7 @@ const Edit = () => {
     e.preventDefault();
     console.log(student);
     try {
-      const result = await axios.post("https://mentor-dashboard-api.vercel.app/edit/submit", { student, sid });
+      const result = await axios.post("https://mentor-dashboard-api-three.vercel.app/edit/submit", { student, sid });
       if (result.data.message === "Updated marks") {
         toast.success("Marks updated successfully");
       }
