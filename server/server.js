@@ -7,13 +7,13 @@ const url = process.env.MONGO_URL
 const client = new MongoClient(url);
 app.use(cors(
   {
-    origin:["https://mentor-dashboard-app.vercel.app"],
+    origin:["https://mentor-dashboard-app.vercel.app/"],
     methods:["POST","GET"],
     credentials:true
   }
 ));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 
 
 const dbName = 'MentorDashboard';
