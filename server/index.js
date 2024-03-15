@@ -31,7 +31,9 @@ const main = async () => {
   data = await dbConnection();
 }
 main();
-
+app.get("/",(req,res)=>{
+  res.json("Hello")
+});
 app.post('/', async (req, res) => {
   res.json("hello");
   const { email, password } = req.body;
