@@ -36,15 +36,16 @@ app.get("/",(req,res)=>{
 });
 app.post('/', async (req, res) => {
   const { email, password } = req.body;
-  const user = await data[0].findOne({ email });
-  if (!user) {
-    return res.status(200).json({ message: 'Invalid email or password' });
-  }
-  if (password != user.password) {
-    return res.status(200).json({ message: 'Invalid email or password' });
-  }
+  // const user = await data[0].findOne({ email });
+  // if (!user) {
+  //   return res.status(200).json({ message: 'Invalid email or password' });
+  // }
+  // if (password != user.password) {
+  //   return res.status(200).json({ message: 'Invalid email or password' });
+  // }
 
-  res.json({ message: user.id })
+  //res.json({ message: user.id })
+  res.json({ message: "Hello" })
 })
 
 app.get('/dashboard', async (req, res) => {
