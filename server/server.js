@@ -7,7 +7,7 @@ const url = process.env.MONGO_URL
 const client = new MongoClient(url);
 app.use(cors(
   {
-    origin:["https://mentor-dashboard-app.vercel.app/"],
+    origin:["https://mentor-dashboard-app.vercel.app"],
     methods:["POST","GET"],
     credentials:true
   }
@@ -33,6 +33,7 @@ const main = async () => {
 main();
 
 app.post('/', async (req, res) => {
+  res.json("hello");
   const { email, password } = req.body;
   const user = await data[0].findOne({ email });
   if (!user) {
