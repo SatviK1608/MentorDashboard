@@ -35,7 +35,6 @@ app.get("/",(req,res)=>{
   res.json("Hello")
 });
 app.post('/', async (req, res) => {
-  res.json("hello");
   const { email, password } = req.body;
   const user = await data[0].findOne({ email });
   if (!user) {
