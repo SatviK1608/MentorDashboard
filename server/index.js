@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 const dbName = 'MentorDashboard';
-const port = process.env.PORT || 5000;
+const port = 5000;
 
 async function dbConnection() {
   await client.connect();
