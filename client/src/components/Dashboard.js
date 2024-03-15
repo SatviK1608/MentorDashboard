@@ -3,12 +3,13 @@ import axios from 'axios';
 import './utils/Dashboard.css';
 import { toast } from 'sonner';
 const Dashboard = () => {
+  axios.defaults.withCredentials = true;
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/dashboard', {
+        const response = await axios.get('https://mentor-dashboard-api-three.vercel.app/dashboard', {
         });
         setStudents(response.data.students);
       } catch (error) {
@@ -22,7 +23,7 @@ const Dashboard = () => {
 
     let mid = localStorage.getItem('mid');
     try {
-      const response = await axios.post("http://localhost:5000/add", { studentid, mid });
+      const response = await axios.post("https://mentor-dashboard-api.vercel.app-three/add", { studentid, mid });
       if (response.data.message === "Added Successfully") {
         toast.success("Student added successfully");
       }
@@ -37,7 +38,7 @@ const Dashboard = () => {
 
   const marksAssigned = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/marksAssigned");
+      const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/marksAssigned");
       setStudents(response.data.filteredData);
     }
     catch (error) {
@@ -45,11 +46,11 @@ const Dashboard = () => {
     }
   }
   const marksNotAssigned = async () => {
-    const response = await axios.get("http://localhost:5000/marksNotAssigned");
+    const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/marksNotAssigned");
     setStudents(response.data.filteredData);
   }
   const clearFilter = async () => {
-    const response = await axios.get("http://localhost:5000/dashboard", {});
+    const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/dashboard", {});
     setStudents(response.data.students);
   }
 
