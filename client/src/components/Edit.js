@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./utils/Edit.css"
 import { toast } from 'sonner';
 const Edit = () => {
+  axios.defaults.withCredentials = true;
   const sid = localStorage.getItem('sid');
   const [student, setStudent] = useState({});
 
