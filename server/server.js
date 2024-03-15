@@ -5,7 +5,13 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config()
 const url = process.env.MONGO_URL
 const client = new MongoClient(url);
-app.use(cors());
+app.use(cors(
+  {
+    origin:["https://mentor-dashboard-app.vercel.app/"],
+    methods:["POST","GET"],
+    credentials:true
+  }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
