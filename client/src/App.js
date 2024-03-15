@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 import Foreground from './Foreground';
-import { ToastContainer } from "react-toastify";
+
 const App = () => {
   const particlesInit = useCallback(async engine => {
     console.log(engine);
