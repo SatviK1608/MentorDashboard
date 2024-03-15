@@ -3,6 +3,7 @@ import axios from 'axios';
 import './utils/Dashboard.css';
 import { toast } from 'sonner';
 const Dashboard = () => {
+  axios.defaults.withCredentials = true;
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
