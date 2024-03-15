@@ -4,6 +4,7 @@ import axios from 'axios';
 import './utils/Login.css'
 import { toast } from 'sonner';
 const Login = () => {
+  axios.defaults.withCredentials = true;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
