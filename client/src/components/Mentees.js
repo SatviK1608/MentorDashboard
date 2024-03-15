@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './utils/Mentees.css';
 import { toast } from 'sonner';
 const Mentees = () => {
+  axios.defaults.withCredentials = true;
   const [mentees, setMentees] = useState([]);
   let mid = localStorage.getItem('mid');
   const navigate = useNavigate();
