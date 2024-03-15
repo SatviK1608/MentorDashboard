@@ -7,11 +7,11 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
+  axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/', { email, password });
+      const response = await axios.post('http://localhost:5000/', { email, password }, { withCredentials: true });
       console.log(response.data.message)
       if (response.data.message !== 'Invalid email or password') {
         localStorage.setItem('mid', response.data.message);
