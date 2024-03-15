@@ -1,0 +1,57 @@
+div {
+  width: 100%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: left;
+}
+
+th {
+  background-color: rgba(249, 115, 22, 0.1);
+  color: rgba(249, 115, 22, 1);
+  border-radius: 5px 5px 0 0;
+}
+
+button {
+  background-color: rgba(249, 115, 22, 1);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(-2px) scale(0.95);
+}
+
+#btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#btn div {
+  display: flex;
+  justify-content: space-around;
+}
