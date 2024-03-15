@@ -16,7 +16,7 @@ const Login = () => {
       if (response.data.message !== 'Invalid email or password') {
         localStorage.setItem('mid', response.data.message);
         toast.success("Login successful")
-        navigate('/dashboard');
+        //navigate('/dashboard');
       } else {
         // alert('Invalid email or password');
         toast.error("Invalid email or password")
