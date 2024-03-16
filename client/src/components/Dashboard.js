@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './utils/Dashboard.css';
 import { toast } from 'sonner';
 const Dashboard = () => {
-  axios.defaults.withCredentials = true;
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get('https://mentor-dashboard-api-three.vercel.app/dashboard', {
-        });
-        setStudents(response.data.students);
+        const response = await fetch('https://mentor-dashboard-api-three.vercel.app/dashboard', {
+          method: 'get'
+        }).then(resp => resp.json()).then(data => data);
+        setStudents(response.students);
       } catch (error) {
         console.error(error);
       }
@@ -22,13 +21,23 @@ const Dashboard = () => {
 
 
     let mid = localStorage.getItem('mid');
+    const result = JSON.stringify({ studentid: studentid, mid: mid });
     try {
-      const response = await axios.post("https://mentor-dashboard-api.vercel.app-three/add", { studentid, mid });
-      if (response.data.message === "Added Successfully") {
+      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/add", {
+        method: 'post', body: result, headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(
+        res => res.json()
+      ).then(
+        data => data
+      );
+      console.log(response);
+      if (response.message === "Added Successfully") {
         toast.success("Student added successfully");
       }
       else {
-        toast.error(response.data.message);
+        toast.error(response.message);
       }
     } catch (error) {
       console.log("error");
@@ -38,20 +47,26 @@ const Dashboard = () => {
 
   const marksAssigned = async () => {
     try {
-      const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/marksAssigned");
-      setStudents(response.data.filteredData);
+      const response = await fetch('https://mentor-dashboard-api-three.vercel.app/marksAssigned', {
+        method: 'get'
+      }).then(resp => resp.json()).then(data => data);
+      setStudents(response.filteredData);
     }
     catch (error) {
       console.log("error")
     }
   }
   const marksNotAssigned = async () => {
-    const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/marksNotAssigned");
-    setStudents(response.data.filteredData);
+    const response = await fetch('https://mentor-dashboard-api-three.vercel.app/marksNotAssigned', {
+      method: 'get'
+    }).then(resp => resp.json()).then(data => data);
+    setStudents(response.filteredData);
   }
   const clearFilter = async () => {
-    const response = await axios.get("https://mentor-dashboard-api.vercel.app-three/dashboard", {});
-    setStudents(response.data.students);
+    const response = await fetch('https://mentor-dashboard-api-three.vercel.app/dashboard', {
+      method: 'get'
+    }).then(resp => resp.json()).then(data => data);
+    setStudents(response.students);
   }
 
   return (
