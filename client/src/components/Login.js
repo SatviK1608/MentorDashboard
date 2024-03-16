@@ -11,8 +11,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
-      const response = await axios.post('https://mentor-dashboard-api-three.vercel.app/', { email, password });
+      let result=JSON.stringify({
+      email:email,
+      password:password
+      });
+      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/",{method:'post',body:result,headers:{
+        'Content-Type': 'application/json'
+      }}).then(
+      res=> res.json()
+    ).then(
+      data=>data
+    );
       console.log(response.data.message)
       if (response.data.message !== 'Invalid email or password') {
         localStorage.setItem('mid', response.data.message);
