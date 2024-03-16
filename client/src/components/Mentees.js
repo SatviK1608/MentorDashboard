@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './utils/Mentees.css';
 import { toast } from 'sonner';
 const Mentees = () => {
-  axios.defaults.withCredentials = true;
   const [mentees, setMentees] = useState([]);
   let mid = localStorage.getItem('mid');
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudents = async () => {
+      const result = JSON.stringify({ mid: mid })
       try {
-        const response = await axios.post("https://mentor-dashboard-api-three.vercel.app/mentees", {
-          mid
-        });
-        setMentees(response.data.mentees);
+
+        const response = await fetch("https://mentor-dashboard-api-three.vercel.app/mentees", {
+          method: 'post', body: result, headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(
+          res => res.json()
+        ).then(
+          data => data
+        );
+        setMentees(response.mentees);
       } catch (error) {
         console.error(error);
       }
@@ -28,9 +34,19 @@ const Mentees = () => {
 
 
   const deleteMentee = async (studentid) => {
+    const result = JSON.stringify({ studentid: studentid, mid: mid })
     try {
-      const response = await axios.post("https://mentor-dashboard-api-three.vercel.app/delete", { studentid, mid });
-      if (response.data.message === "Deleted Successfully") {
+
+      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/delete", {
+        method: 'post', body: result, headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(
+        res => res.json()
+      ).then(
+        data => data
+      );
+      if (response.message === "Deleted Successfully") {
         toast.success("Mentee deleted successfully");
         var m = mentees.filter((item) => {
           return item.id !== studentid;
@@ -47,9 +63,18 @@ const Mentees = () => {
   }
 
   const confirmResult = async (studentid) => {
+    const result = JSON.stringify({ studentid: studentid })
     try {
       // eslint-disable-next-line
-      const response = await axios.post("https://mentor-dashboard-api-three.vercel.app/confirm", { studentid });
+      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/confirm", {
+        method: 'post', body: result, headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(
+        res => res.json()
+      ).then(
+        data => data
+      );
       toast.success("Marks have been locked");
     } catch (err) {
       console.log("error")
