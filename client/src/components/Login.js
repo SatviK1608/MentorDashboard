@@ -22,7 +22,7 @@ const Login = () => {
     ).then(
       data=>data
     );
-      console.log(response.data.message)
+      console.log(response.data)
       if (response.data.message !== 'Invalid email or password') {
         localStorage.setItem('mid', response.data.message);
         toast.success("Login successful")
