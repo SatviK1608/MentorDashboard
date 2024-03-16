@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import "./utils/Edit.css"
 import { toast } from 'sonner';
 const Edit = () => {
-  axios.defaults.withCredentials = true;
   const sid = localStorage.getItem('sid');
   const [student, setStudent] = useState({});
 
   useEffect(() => {
     const fetchStudent = async () => {
+      const result = JSON.stringify({ sid: sid });
       try {
-        const response = await axios.post('https://mentor-dashboard-api-three.vercel.app/editMarks', { sid });
-        setStudent(response.data);
+        const response = await fetch("https://mentor-dashboard-api-three.vercel.app/editMarks", {
+          method: 'post', body: result, headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then(
+          res => res.json()
+        ).then(
+          data => data
+        );
+        setStudent(response);
       } catch (error) {
         console.error(error);
       }
@@ -27,9 +34,18 @@ const Edit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(student);
+    const result = JSON.stringify({ student: student, sid: sid });
     try {
-      const result = await axios.post("https://mentor-dashboard-api-three.vercel.app/edit/submit", { student, sid });
-      if (result.data.message === "Updated marks") {
+      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/edit/submit", {
+        method: 'post', body: result, headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(
+        res => res.json()
+      ).then(
+        data => data
+      );
+      if (response.message === "Updated marks") {
         toast.success("Marks updated successfully");
       }
       else {
