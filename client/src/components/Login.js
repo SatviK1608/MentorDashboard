@@ -15,7 +15,7 @@ const Login = () => {
       email:email,
       password:password
       });
-      const response = await fetch("https://mentor-dashboard-api-three.vercel.app/",{method:'post',body:result,headers:{
+      const response = await fetch("https://fair-lime-hummingbird-ring.cyclic.app/",{method:'post',body:result,headers:{
         'Content-Type': 'application/json'
       }}).then(
       res=> res.json()
